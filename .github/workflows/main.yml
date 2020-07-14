@@ -1,0 +1,43 @@
+name: Render
+
+on:
+  schedule:
+    - cron:  '0 0 * * *'
+  issues:
+    types: [opened, edited]
+
+jobs:
+  render:
+    name: Render header
+    runs-on: ubuntu-latest
+    container: ikester/blender:2.82
+    steps:
+      - uses: actions/checkout@v2
+      - name: Render
+        run: /usr/local/blender/blender -b render.blend -P $GITHUB_WORKSPACE/script.py -f 1
+      - uses: actions/upload-artifact@v2
+        with:
+          name: header
+          path: /tmp/0001.png
+
+  commit:
+    name: Commit & push header
+    runs-on: ubuntu-latest
+    needs: render
+    steps:
+      - uses: actions/checkout@v2
+      - name: Download math result for job 2
+        uses: actions/download-artifact@v1
+        with:
+          name: header
+      - name: Copy file
+        run: cp header/0001.png header.png
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v4
+        with:
+          author_name: Leon Koole's Blender Render
+          author_email: leon@koole.io
+          message: "Generate new image"
+          add: "header.png"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
