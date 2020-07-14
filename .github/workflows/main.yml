@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Render
-        run: blender -b render.blend -P $GITHUB_WORKSPACE/script.py -f 1
+        run: blender -b render.blend -P $GITHUB_WORKSPACE/script.py -a
       - uses: actions/upload-artifact@v2
         with:
           name: frames
