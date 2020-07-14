@@ -46,7 +46,7 @@ jobs:
         with:
           name: header
       - name: Rename old file
-        run: cp header.gif "Header `date`.gif"
+        run: cp header.gif "old/`date`.gif"
       - name: Copy new file
         run: cp header/header.gif header.gif
       - name: Commit changes
