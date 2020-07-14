@@ -3,8 +3,6 @@ name: Render
 on:
   schedule:
     - cron:  '0 0 * * *'
-  issues:
-    types: [opened, edited]
 
 jobs:
   render:
