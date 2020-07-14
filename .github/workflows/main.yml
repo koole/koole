@@ -28,7 +28,7 @@ jobs:
         with:
           name: frames
       - name: Convert to GIF
-        run: ffmpeg -i /frames/%04d.png -r 24 header.gif -y   
+        run: ffmpeg -i frames/%04d.png -r 24 header.gif -y   
       - uses: actions/upload-artifact@v2
         with:
           name: header
