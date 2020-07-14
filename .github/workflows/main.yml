@@ -1,6 +1,7 @@
 name: Render
 
 on:
+  push
   schedule:
     - cron:  '0 0 * * *'
 
@@ -8,11 +9,11 @@ jobs:
   render:
     name: Render header
     runs-on: ubuntu-latest
-    container: ikester/blender:2.82
+    container: nytimes/blender:2.83-cpu-ubuntu18.04
     steps:
       - uses: actions/checkout@v2
       - name: Render
-        run: /usr/local/blender/blender -b render.blend -P $GITHUB_WORKSPACE/script.py -f 1
+        run: blender -b render.blend -P $GITHUB_WORKSPACE/script.py -f 1
       - uses: actions/upload-artifact@v2
         with:
           name: header
