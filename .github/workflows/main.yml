@@ -56,6 +56,6 @@ jobs:
           author_name: Leon Koole's Blender Render
           author_email: leon@koole.io
           message: "Generated new animation"
-          add: "*.gif"
+          add: "**/*.gif"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
