@@ -51,14 +51,12 @@ jobs:
         run: cp header.gif "old/`date`.gif"
       - name: Copy new file
         run: cp header/header.gif header.gif
-      - name: Remove copied file
-        run: rm header/header.gif
       - name: Commit changes
         uses: EndBug/add-and-commit@v4
         with:
           author_name: Leon Koole's Blender Render
           author_email: leon@koole.io
           message: "Generated new animation"
-          add: "**/*.gif"
+          add: "header.gif old/*.gif"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
