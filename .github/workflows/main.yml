@@ -3,7 +3,6 @@ name: Render
 on:
   schedule:
     - cron: '0 0 * * 0'
-  push:
 
 jobs:
   render:
