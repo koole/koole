@@ -3,6 +3,7 @@ name: Render
 on:
   schedule:
     - cron: '0 0 * * 0'
+  push:
 
 jobs:
   render:
@@ -50,6 +51,8 @@ jobs:
         run: cp header.gif "old/`date`.gif"
       - name: Copy new file
         run: cp header/header.gif header.gif
+      - name: Remove copied file
+        run: rm header/header.gif
       - name: Commit changes
         uses: EndBug/add-and-commit@v4
         with:
